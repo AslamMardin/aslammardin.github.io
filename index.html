@@ -20,6 +20,9 @@
     <link href="dist/css/tabler-payments.min.css?1674944402" rel="stylesheet"/>
     <link href="dist/css/tabler-vendors.min.css?1674944402" rel="stylesheet"/>
     <link href="dist/css/demo.min.css?1674944402" rel="stylesheet"/>
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
     <style>
       @import url('https://rsms.me/inter/inter.css');
       :root {
@@ -332,29 +335,29 @@
                 <div class="col-12">
                   <div class="card">
                     <div class="card-body">
-                      <h2 class="card-title">Status</h2>
+                      <h2 class="card-title">Biodata</h2>
 
                       <div class="mb-3">
                         <div class="row">
-                            <div class="col-sm-5"><strong>Nama</strong></div>
-                            <div class="col-sm-7">: Aslam Mardin</div>
+                            <div class="col-5"><strong>Nama</strong></div>
+                            <div class="col-7">: Aslam Mardin</div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-5"><strong>Panggilan</strong></div>
-                            <div class="col-sm-7">: Accank Maunt</div>
+                            <div class="col-5"><strong>Panggilan</strong></div>
+                            <div class="col-7">: Accank Maunt</div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-5"><strong>Tanggal Lahir</strong></div>
-                            <div class="col-sm-7">: 21 Oktober 1999</div>
+                            <div class="col-5"><strong>Tanggal Lahir</strong></div>
+                            <div class="col-7">: 21 Oktober 1999</div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-5"><strong>Usia</strong></div>
-                            <div class="col-sm-7">: 23 Tahun</div>
+                            <div class="col-5"><strong>Usia</strong></div>
+                            <div class="col-7">: 23 Tahun</div>
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-5"><strong>Status</strong></div>
-                            <div class="col-sm-7">: Mahasiswa</div>
+                            <div class="col-5"><strong>Status</strong></div>
+                            <div class="col-7">: Mahasiswa</div>
                         </div>
                       </div>
 
@@ -394,6 +397,7 @@
                         </div>
 
                         <div class="my-3">
+                          <h4 class="badge bg-facebook-lt">Bio Status</h4>
                             <blockquote class="blockquote">
                                 <p>"Sebaik-baik kalian adalah yang mempelajari al-Qur'an dan mengajarkannya.”</p>
                                 <footer class="blockquote-footer">Usman bin Affan ra</footer>
@@ -406,11 +410,33 @@
             </div>
           </div>
      </div>
+     <div class="container my-3">
+          <div class="row">
+              <div class="col">
+                <div class="card">
+                <div class="card-body">
+                  <h4>Map</h4>
+                   <div id="map" class="w-100" style="height: 250px;"></div>
+
+                   <div class="mt-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-map-pin-filled" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" stroke-width="0" fill="currentColor"></path>
+                   </svg>
+                   <strong>Jl. Merpati Desa Bonde Campalagian No.8</strong>
+                   </div>
+                </div>
+              </div>
+              </div>
+          </div>
+        </div>
       </section>
+
+    
 
 
       <!-- modal -->
-      <div class="modal modal-blur fade modal-dialog-scrollable" id="modal-simple" tabindex="-1" aria-hidden="true" style="display: none;">
+      <div class="modal modal-blur fade " id="modal-simple" tabindex="-1" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -439,5 +465,26 @@
     <!-- Tabler Core -->
     <script src="dist/js/tabler.min.js?1674944402" defer></script>
     <script src="dist/js/demo.min.js?1674944402" defer></script>
+     <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+     crossorigin=""></script>
+
   </body>
-</html>
+<script>
+  var map = L.map('map').setView([-3.480949673897528, 119.14515388505166], 18);
+
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: 'Rumah Aslam Mardin'
+}).addTo(map);
+
+
+var marker = L.marker([-3.480949673897528, 119.14515388505166]).addTo(map);
+
+var popup = L.popup()
+    .setLatLng([-3.480949673897528, 119.14515388505166])
+    .setContent("Rumah Aslam Mardin")
+    .openOn(map);
+</script>
+  </html>
